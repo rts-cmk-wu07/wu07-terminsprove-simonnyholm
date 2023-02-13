@@ -5,13 +5,7 @@ const Navigation = () => {
   const [navClicked, setNavClicked] = useState(false);
 
   return (
-    /*
-    <nav>
-      <ul>
-        <li></li>
-      </ul>
-    </nav>
-    */
+
 
     <>
       {!navClicked && (
