@@ -8,6 +8,7 @@ const Navigation = () => {
     <>
       {!navClicked && (
         <button
+          className="border-2"
           onClick={(event) => {
             setNavClicked(true);
           }}
