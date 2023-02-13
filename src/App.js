@@ -4,7 +4,6 @@ import Layout from "./components/Layout";
 import Home from "./views/Home.jsx";
 import MySchedule from "./views/MySchedule.jsx";
 import Search from "./views/Search.jsx";
-import Login from "./views/Login";
 import Welcome from "./views/Welcome";
 import ClassDetails from "./views/ClassDetails";
 
@@ -17,7 +16,6 @@ function App() {
         <Route path="/myschedule" element={<MySchedule />} />
         <Route path="/search" element={<Search />} />
         <Route path="/classdetails" element={<ClassDetails />} />
-        <Route path="/login" element={<Login />} />
       </Route>
     </Routes>
   );
