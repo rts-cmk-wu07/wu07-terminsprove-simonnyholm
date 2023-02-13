@@ -5,14 +5,6 @@ const Navigation = () => {
   const [navClicked, setNavClicked] = useState(false);
 
   return (
-    /*
-    <nav>
-      <ul>
-        <li></li>
-      </ul>
-    </nav>
-    */
-
     <>
       {!navClicked && (
         <button
@@ -45,7 +37,7 @@ const Navigation = () => {
                 <NavLink to="/myschedule">MySchedule</NavLink>
               </li>
               <li>
-                <button>Ternary logon/Out</button>
+                <button>Ternary login/Out</button>
               </li>
             </ul>
           </nav>
