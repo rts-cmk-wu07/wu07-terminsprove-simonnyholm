@@ -5,3 +5,4 @@ const ClassDetails = () => {
     </div>
   );
 };
+export default ClassDetails;
