@@ -49,10 +49,10 @@ const Home = () => {
         <div>
           {isLoading && <p>Indlæser...</p>}
           {classes && (
-            <>
+            <div onClick={() => navigate(`/classdetails/${randomClass.id}`)}>
               <img src={randomClass.asset.url} alt="" />
               <h2>{randomClass.className}</h2>
-            </>
+            </div>
           )}
           {error && <p>{error}</p>}
         </div>
