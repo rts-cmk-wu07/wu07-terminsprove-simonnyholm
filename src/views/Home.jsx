@@ -1,24 +1,85 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+//import ClassItem from "../components/ClassItem";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  var [content, setContent] = useState();
+  const [classes, setClasses] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  useEffect(
-    function () {
-      axios
-        .get("http://localhost:4000/api/v1/classes", {})
-        .then((response) => setContent(response));
-    },
-    [setContent]
-  );
+  useEffect(() => {
+    fetch("http://localhost:4000/api/v1/classes")
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("Vi kunne desværre ikke indlæse kursusinformationerne");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setIsLoading(false);
+        setClasses(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
+  }, [setClasses, setIsLoading, setError]);
 
-  console.log("erf", content);
+  console.log("error", error);
+
+  console.log("classes", classes);
+
+  if (classes) {
+    var randomClass = classes[Math.floor(Math.random() * classes.length)];
+  } else {
+    return;
+  }
+
+  console.log("rando", randomClass);
+
   return (
-    <div>
-      <h1>Home</h1>
-      
-    </div>
+    <>
+      <section>
+        <div>
+          <div>icon</div>
+          <h1>Popular Classes</h1>
+        </div>
+        <div>
+          {isLoading && <p>Indlæser...</p>}
+          {classes && (
+            <div onClick={() => navigate(`/classdetails/${randomClass.id}`)}>
+              <img src={randomClass.asset.url} alt="" />
+              <h2>{randomClass.className}</h2>
+            </div>
+          )}
+          {error && <p>{error}</p>}
+        </div>
+      </section>
+      <section>
+        <div>
+          {isLoading && <p>Indlæser...</p>}
+
+          {classes &&
+            classes.map((cl, index) => (
+              <div
+                key={index}
+                onClick={() => navigate(`/classdetails/${cl.id}`)}
+              >
+                <div>
+                  <img src={cl.asset.url} alt={cl.className} />
+                </div>
+                <p key={index}>{cl.className}</p>
+              </div>
+            ))}
+
+          {error && <p>{error}</p>}
+        </div>
+      </section>
+
+      <div></div>
+    </>
   );
 };
 
