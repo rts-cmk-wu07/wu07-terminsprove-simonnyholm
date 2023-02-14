@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 const ClassDetails = () => {
   const { id } = useParams();
-  const [classDetail, setClassDetail] = useState([]);
+  const [classDetail, setClassDetail] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,9 +28,22 @@ const ClassDetails = () => {
 
   console.log("classDetail", classDetail);
 
+  console.log("error", error);
+
   return (
     <div>
-      <h1>{classDetail.className}</h1>
+      {isLoading && <p>Indlæser...</p>}
+      {classDetail && (
+        <>
+          <img
+            src={classDetail && classDetail.asset.url}
+            alt={classDetail && classDetail.className}
+          />
+          <h1>{classDetail && classDetail.className}</h1>
+        </>
+      )}
+
+      {error && <p>{error}</p>}
     </div>
   );
 };
