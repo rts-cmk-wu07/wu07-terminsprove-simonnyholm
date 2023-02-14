@@ -24,7 +24,7 @@ const ClassDetails = () => {
         setIsLoading(false);
         setError(err.message);
       });
-  }, [setClassDetail, setIsLoading, setError]);
+  }, [setClassDetail, setIsLoading, setError, id]);
 
   console.log("classDetail", classDetail);
 
