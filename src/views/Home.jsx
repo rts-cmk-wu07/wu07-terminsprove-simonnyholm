@@ -60,6 +60,7 @@ const Home = () => {
       <section>
         <div>
           {isLoading && <p>Indlæser...</p>}
+
           {classes &&
             classes.map((cl, index) => (
               <div

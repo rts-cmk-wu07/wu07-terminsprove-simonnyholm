@@ -26,11 +26,11 @@ const ClassDetails = () => {
       });
   }, [setClassDetail, setIsLoading, setError]);
 
-  console.log("classDetail", classDetail)
+  console.log("classDetail", classDetail);
 
   return (
     <div>
-      <h1>Dummy class name</h1>
+      <h1>{classDetail.className}</h1>
     </div>
   );
 };
