@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const Welcome = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <section>
@@ -6,7 +10,7 @@ const Welcome = () => {
         <p>Train like a pro</p>
       </section>
       <section>
-        <button>Get Started</button>
+        <button onClick={() => navigate(`/home/`)}>Get Started</button>
       </section>
     </div>
   );

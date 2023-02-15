@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import LoginForm from "./LoginForm";
 
 const Navigation = () => {
   const [navClicked, setNavClicked] = useState(false);
@@ -29,19 +30,43 @@ const Navigation = () => {
           <nav>
             <ul>
               <li>
-                <NavLink to="/home">Home</NavLink>
+                <NavLink
+                  to="/home"
+                  onClick={(event) => {
+                    setNavClicked(false);
+                  }}
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/search">Search</NavLink>
+                <NavLink
+                  to="/search"
+                  onClick={(event) => {
+                    setNavClicked(false);
+                  }}
+                >
+                  Search
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/myschedule">MySchedule</NavLink>
+                <NavLink
+                  to="/myschedule"
+                  onClick={(event) => {
+                    setNavClicked(false);
+                  }}
+                >
+                  MySchedule
+                </NavLink>
               </li>
               <li>
                 <button>Ternary login/Out</button>
               </li>
             </ul>
           </nav>
+          <div>
+            <LoginForm />
+          </div>
         </div>
       )}
     </>
