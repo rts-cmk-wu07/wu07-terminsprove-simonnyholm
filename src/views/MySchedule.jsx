@@ -1,6 +1,7 @@
 import TokenContext from "../Contexts/TokenContext";
 import UserIdContext from "../Contexts/UserIdContext";
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MySchedule = () => {
   var [token] = useContext(TokenContext);
@@ -10,6 +11,7 @@ const MySchedule = () => {
   const [mySchedule, setMySchedule] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:4000/api/v1/users/" + UserId, {
@@ -42,17 +44,24 @@ const MySchedule = () => {
   return (
     <div>
       <h1>My Schedule</h1>
-      <div>
-      {isLoading && <p>Indlæser din træningsplan...</p>}
-      {mySchedule && (
-        <section>
+      <section>
+        {isLoading && <p>Indlæser din træningsplan...</p>}
+        {mySchedule &&
+          mySchedule.classes.map((cl, index) => (
+            <article
+              key={index}
+              onClick={() => navigate(`/classdetails/${cl.id}`)}
+            >
+              <div className="flex">
+                <p>{cl.classDay}</p>
+                <p>{cl.classTime}</p>
+              </div>
+              <h2>{cl.className}</h2>
+            </article>
+          ))}
 
-        </section>
-      )}
-      {error && <p>{error}</p>}
-
-          
-      </div>
+        {error && <p>{error}</p>}
+      </section>
     </div>
   );
 };

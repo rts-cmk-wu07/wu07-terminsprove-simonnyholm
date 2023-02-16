@@ -10,9 +10,11 @@ import TokenContext from "./Contexts/TokenContext";
 import { useState } from "react";
 import UserIdContext from "./Contexts/UserIdContext";
 
+
 function App() {
   var tokenState = useState(null);
   var userIdState = useState(null);
+  
   console.log("tokenState", tokenState);
   console.log("userIdState", userIdState);
 
