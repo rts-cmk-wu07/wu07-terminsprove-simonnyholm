@@ -1,35 +1,79 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 const LoginForm = () => {
+  //var [tokenContext, setTokenContext] = useContext(TokenContext);
   const [token, setToken] = useState(null);
   const [error, setError] = useState("");
+  //const [username, setUsername] = useState();
+  //const [password, setPassword] = useState();
 
-  async function loginHandler(event) {
-    event.preventDefault();
+  //const { TokenContext } = useContext(TokenContext);
+
+  async function getToken(event) {
     try {
-      const respons = await fetch("http://localhost:4000/auth/token", {
+      const response = await fetch("http://localhost:4000/auth/token", {
         method: "POST",
         body: JSON.stringify({
           username: event.target.username.value,
           password: event.target.password.value,
         }),
-        //Header: "Content-Type: application/x-www-form-urlencoded",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
 
-      if (respons.status === 201) {
-        const data = await respons.json();
+      console.log("resp", response);
+
+      const data = await response.json();
+      setToken(data.token);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    getToken(event);
+  };
+
+  /*
+
+  async function loginHandler(event) {
+    event.preventDefault();
+
+    try {
+
+
+      const response = await fetch("http://localhost:4000/auth/token", {
+        method: "POST",
+        body: JSON.stringify({
+          username: event.target.username.value,
+          password: event.target.password.value,
+        }),
+        header: "Content-Type: application/x-www-form-urlencoded",
+      });
+
+      console.log("resp", response);
+
+      if (response.status === 200) {
+        const data = await response.json();
         setToken(data.token);
       }
     } catch (error) {
-      console.log("error", error);
+      console.log(error);
+      setError(error);
     }
   }
+
+  */
 
   console.log("token please", token);
 
   return (
     <>
-      <form onSubmit={loginHandler}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="">
             Brugernavn:
