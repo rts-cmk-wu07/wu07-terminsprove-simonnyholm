@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
+import TokenContext from "../Contexts/TokenContext";
+import UserIdContext from "../Contexts/UserIdContext";
 
 const LoginForm = () => {
-  //var [tokenContext, setTokenContext] = useContext(TokenContext);
-  const [token, setToken] = useState(null);
+  //const [tokenContext, setTokenContext] = useContext(TokenContext);
+  const [token, setToken] = useContext(TokenContext);
   const [error, setError] = useState("");
-  //const [username, setUsername] = useState();
-  //const [password, setPassword] = useState();
+  const [submitted, setSubmitted] = useState(false);
+  const [userId, setUserId] = useContext(UserIdContext);
 
   //const { TokenContext } = useContext(TokenContext);
 
@@ -27,6 +29,7 @@ const LoginForm = () => {
 
       const data = await response.json();
       setToken(data.token);
+      setUserId(data.userId);
     } catch (error) {
       console.log(error);
       setError(error);
@@ -37,6 +40,9 @@ const LoginForm = () => {
     event.preventDefault();
     getToken(event);
   };
+
+  console.log("TokenContext", TokenContext);
+  console.log("UserId", userId);
 
   /*
 
@@ -87,10 +93,23 @@ const LoginForm = () => {
           </label>
         </div>
 
-        <button type="submit">Log ind</button>
+        <button
+          type="submit"
+          onClick={(event) => {
+            setSubmitted(true);
+          }}
+        >
+          Log ind
+        </button>
       </form>
       <div>
-        <p>{token ? "Du er logget ind" : "Du er ikke logget ind"}</p>
+        <p>
+          {!token
+            ? submitted
+              ? "Bekræfter brugernavn og adgangskode. Vent venligst..."
+              : "Du er ikke logget ind"
+            : "Du er logget ind."}
+        </p>
 
         <p>{error.message}</p>
       </div>
