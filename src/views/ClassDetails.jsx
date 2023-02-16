@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TrainerItem from "../components/TrainerItem.jsx";
+import UserIdContext from "../Contexts/UserIdContext";
+import { useContext } from "react";
+import TokenContext from "../Contexts/TokenContext";
 
 const ClassDetails = () => {
   const { id } = useParams();
@@ -42,6 +45,7 @@ const ClassDetails = () => {
           />
           <div className="flex">
             <h1>{classDetail && classDetail.className}</h1>
+
             <button>Sign up</button>
           </div>
         </section>
