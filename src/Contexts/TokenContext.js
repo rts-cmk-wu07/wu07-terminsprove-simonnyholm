@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-var TokenContext = createContext(null, function () {});
+var TokenContext = createContext();
 
 export default TokenContext;
