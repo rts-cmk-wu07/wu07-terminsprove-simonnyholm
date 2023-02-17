@@ -80,22 +80,25 @@ const LoginForm = () => {
 
   return (
     <>
-      <h3>Log ind som bruger</h3>
-      <form onSubmit={handleSubmit}>
+      <h3 className="text-[50px]">Log ind</h3>
+      <form className="text-[22px] text-left pl-10" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="">
-            Brugernavn:
+            <p className="pt-5">Brugernavn:</p>
+
             <input type="text" name="username" id="username" />
           </label>
         </div>
         <div>
           <label htmlFor="">
-            Adgangskode:
+            <p className="pt-5">Adgangskode:</p>
+
             <input type="password" name="password" id="password" />
           </label>
         </div>
 
         <button
+          className="text-[50px] text-center bg-slate-300 rounded-xl p-8"
           type="submit"
           onClick={(event) => {
             setSubmitted(true);
@@ -105,7 +108,7 @@ const LoginForm = () => {
         </button>
       </form>
       <div>
-        <p>
+        <p className="text-[22px] text-left pl-10">
           {!token
             ? submitted
               ? "Bekræfter brugernavn og adgangskode. Vent venligst..."

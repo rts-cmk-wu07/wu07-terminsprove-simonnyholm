@@ -2,6 +2,9 @@ import { NavLink } from "react-router-dom";
 import { useState, useContext } from "react";
 import LoginForm from "./LoginForm";
 import TokenContext from "../Contexts/TokenContext";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { VscClose } from "react-icons/vsc";
+import { IoIosClose } from "react-icons/io";
 
 const Navigation = () => {
   const [navClicked, setNavClicked] = useState(false);
@@ -12,25 +15,26 @@ const Navigation = () => {
     <>
       {!navClicked && (
         <button
-          className="border-2"
+          className="text-slate-400 fixed top-20 right-7"
           onClick={(event) => {
             setNavClicked(true);
           }}
         >
-          Menu
+          <HiBars3BottomRight size={35} />
         </button>
       )}
 
       {navClicked && (
-        <div>
+        <div className="fixed right-0 left-0 top-0  bottom-0 w-screen z-40 bg-white">
           <button
+            className="text-slate-400 fixed top-20 right-7"
             onClick={(event) => {
               setNavClicked(false);
             }}
           >
-            Close
+            <IoIosClose size={45} />
           </button>
-          <nav>
+          <nav className="pt-32 text-center text-[50px]">
             <ul>
               <li>
                 <NavLink
