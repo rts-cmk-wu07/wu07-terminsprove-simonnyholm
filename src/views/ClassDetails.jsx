@@ -4,12 +4,16 @@ import TrainerItem from "../components/TrainerItem.jsx";
 import UserIdContext from "../Contexts/UserIdContext";
 import { useContext } from "react";
 import TokenContext from "../Contexts/TokenContext";
+import LoggedInUserContext from "../Contexts/LoggedInUserContext.js";
+import LoggedInUser from "../components/LoggedInUser.jsx";
 
 const ClassDetails = () => {
   const { id } = useParams();
   const [classDetail, setClassDetail] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  var [token] = useContext(TokenContext);
+  const [loggedInUser] = useContext(LoggedInUserContext);
 
   useEffect(() => {
     fetch("http://localhost:4000/api/v1/classes/" + id)
@@ -45,8 +49,7 @@ const ClassDetails = () => {
           />
           <div className="flex">
             <h1>{classDetail && classDetail.className}</h1>
-
-            <button>Sign up</button>
+            {token && <LoggedInUser classId={id} />}
           </div>
         </section>
       )}
