@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-var LoggedInUserContext = createContext();
+var LoggedInUserContext = createContext([]);
 
 export default LoggedInUserContext;
