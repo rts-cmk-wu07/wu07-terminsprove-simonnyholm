@@ -63,7 +63,35 @@ const Navigation = () => {
                 </NavLink>
               </li>
               <li>
-                {token ? (
+                {openLogin ? (
+                  <>
+                    {token ? (
+                      <></>
+                    ) : (
+                      <>
+                        <div>
+                          {" "}
+                          <LoginForm />
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {token ? (
+                      <></>
+                    ) : (
+                      <button
+                        onClick={(event) => {
+                          setOpenLogin(true);
+                        }}
+                      >
+                        Log ind
+                      </button>
+                    )}
+                  </>
+                )}
+                {token && (
                   <button
                     onClick={(event) => {
                       setToken(false);
@@ -71,19 +99,10 @@ const Navigation = () => {
                   >
                     Log ud
                   </button>
-                ) : (
-                  <button
-                    onClick={(event) => {
-                      setOpenLogin(true);
-                    }}
-                  >
-                    Log ind
-                  </button>
                 )}
               </li>
             </ul>
           </nav>
-          <div>{openLogin && <LoginForm />}</div>
         </div>
       )}
     </>
