@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LoginForm from "./LoginForm";
+import TokenContext from "../Contexts/TokenContext";
 
 const Navigation = () => {
   const [navClicked, setNavClicked] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  var [token, setToken] = useContext(TokenContext);
 
   return (
     <>
@@ -60,13 +63,27 @@ const Navigation = () => {
                 </NavLink>
               </li>
               <li>
-                <button>Ternary login/Out</button>
+                {token ? (
+                  <button
+                    onClick={(event) => {
+                      setToken(false);
+                    }}
+                  >
+                    Log ud
+                  </button>
+                ) : (
+                  <button
+                    onClick={(event) => {
+                      setOpenLogin(true);
+                    }}
+                  >
+                    Log ind
+                  </button>
+                )}
               </li>
             </ul>
           </nav>
-          <div>
-            <LoginForm />
-          </div>
+          <div>{openLogin && <LoginForm />}</div>
         </div>
       )}
     </>
