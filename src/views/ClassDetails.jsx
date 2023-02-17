@@ -6,6 +6,7 @@ import { useContext } from "react";
 import TokenContext from "../Contexts/TokenContext";
 import LoggedInUserContext from "../Contexts/LoggedInUserContext.js";
 import LoggedInUser from "../components/LoggedInUser.jsx";
+import BackLink from "../components/BackLink.jsx";
 
 const ClassDetails = () => {
   const { id } = useParams();
@@ -43,12 +44,13 @@ const ClassDetails = () => {
       {isLoading && <p>Indlæser...</p>}
       {classDetail && (
         <section>
+          <BackLink />
           <img
             src={classDetail && classDetail.asset.url}
             alt={classDetail && classDetail.className}
           />
           <div className="flex">
-            <h1>{classDetail && classDetail.className}</h1>
+            <h1 className="text-center text-[28px]">{classDetail && classDetail.className}</h1>
             {token && <LoggedInUser classId={id} />}
           </div>
         </section>

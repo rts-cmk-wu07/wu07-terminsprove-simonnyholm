@@ -2,6 +2,7 @@ import TokenContext from "../Contexts/TokenContext";
 import UserIdContext from "../Contexts/UserIdContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BackLink from "../components/BackLink.jsx";
 
 const MySchedule = () => {
   var [token] = useContext(TokenContext);
@@ -42,17 +43,19 @@ const MySchedule = () => {
   console.log("mySchedule", mySchedule);
 
   return (
-    <div>
-      <h1>My Schedule</h1>
+    <div className="pt-20">
+      <BackLink />
+      <h1 className="text-center text-[28px]">My Schedule</h1>
       <section>
         {isLoading && <p>Indlæser din træningsplan...</p>}
         {mySchedule &&
           mySchedule.classes.map((cl, index) => (
             <article
+              className="p-3"
               key={index}
               onClick={() => navigate(`/classdetails/${cl.id}`)}
             >
-              <div className="flex">
+              <div className="flex space-x-2">
                 <p>{cl.classDay}</p>
                 <p>{cl.classTime}</p>
               </div>

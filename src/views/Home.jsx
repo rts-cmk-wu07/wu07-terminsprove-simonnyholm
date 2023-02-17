@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 //import ClassItem from "../components/ClassItem";
 import { useNavigate } from "react-router-dom";
+import { IoTriangleSharp } from "react-icons/io5";
 
 const Home = () => {
   const [classes, setClasses] = useState(null);
@@ -42,15 +43,17 @@ const Home = () => {
   return (
     <>
       <section>
-        <div>
-          <div>icon</div>
-          <h1>Popular Classes</h1>
+        <div className="pt-16 pb-8">
+          <div className="text-slate-400 fixed top-20 left-7">
+            <IoTriangleSharp size={22} />
+          </div>
+          <h1 className="text-center text-[28px]">Popular Classes</h1>
         </div>
-        <div>
+        <div className="m-5 rounded-xl">
           {isLoading && <p>Indlæser...</p>}
           {classes && (
             <div onClick={() => navigate(`/classdetails/${randomClass.id}`)}>
-              <img src={randomClass.asset.url} alt="" />
+              <img className="w-max" src={randomClass.asset.url} alt="" />
               <h2>{randomClass.className}</h2>
             </div>
           )}
@@ -58,12 +61,13 @@ const Home = () => {
         </div>
       </section>
       <section>
-        <div>
+        <div className="flex overflow-x-hidden flex-row">
           {isLoading && <p>Indlæser...</p>}
 
           {classes &&
             classes.map((cl, index) => (
               <div
+                className="m-5 rounded-2xl w-20"
                 key={index}
                 onClick={() => navigate(`/classdetails/${cl.id}`)}
               >
